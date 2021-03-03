@@ -1,37 +1,141 @@
-## Welcome to GitHub Pages
+<html>
+	<head>
+	<script>
+function go() {
+var firebaseConfig = {
+    apiKey: "AIzaSyA4dZvyIPgPAgAzWk6dRINY0AIZ48vZYsY",
+    authDomain: "passwordlock-2f53b.firebaseapp.com",
+    projectId: "passwordlock-2f53b",
+    storageBucket: "passwordlock-2f53b.appspot.com",
+    messagingSenderId: "380447386739",
+    appId: "1:380447386739:web:3b420a371991a69c5bce06",
+    measurementId: "G-L05MCPQXG4"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-You can use the [editor on GitHub](https://github.com/Klipsgoboom/Signuppage/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+const auth = firebase.auth();
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+function signUp() {
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+    var email = document.getElementById("email");
+    var password = document.getElementById("password");
 
-```markdown
-Syntax highlighted code block
+    const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+    promise.catch(e => alert(e.message));
 
-# Header 1
-## Header 2
-### Header 3
+    alert("Signed Up");
+}
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+function signIn() {
 
-[Link](url) and ![Image](src)
-```
+    var email = document.getElementById("email");
+    var password = document.getElementById("password");
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+    promise.catch(e => alert(e.message));
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Klipsgoboom/Signuppage/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+}
+
+
+function signOut() {
+
+    auth.signOut();
+    alert("Signed Out");
+
+}
+
+auth.onAuthStateChanged(function(user) {
+
+            if (user) {
+
+                var email = user.email;
+                alert("Active User " + email);
+
+                //take user to other home page
+
+
+                //is signed in
+            }
+
+            auth.onAuthStateChanged(function(user) {
+
+                if(user){
+
+                    var email = user.email;
+                    alert("Active User " + email);
+
+                    //is signed in
+					
+                } else {
+                    alert("No Active User");
+
+                    //no user is signed in
+				}
+				function signIn(){
+            
+					var email = document.getElementById("email");
+					var password = document.getElementById("password");
+					
+				   const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+					promise.catch(e => alert(e.message));
+				}
+				
+				
+				function signOut(){
+					
+					auth.signOut();
+					window.location='index.html';
+					alert("Signed Out");
+					
+				}
+				
+				
+				
+				auth.onAuthStateChanged(function(user) {
+					if (user) {
+						window.location.replace("http://www.klipbitz.tk/main");
+					  // User is signed in.
+					} 
+					else {
+		
+					  // No user is signed in.
+					}
+				  });
+			})
+		});
+		}
+	</script>	
+
+	<title> Hello </title>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+
+	</head>
+<h1> Click the button bellow to validate that you're not a robot.
+<button type="button" onclick="go()">Validate</button>
+	<body>
+	<h1> Form </h1>
+	<div id="formContainer">
+		<div id="header"> </div>
+
+		<input type="email" placeholder="email" id="email"/>
+		<input type="password" placeholder="password" id="password"/>
+
+		<button onclick="signUp()","go()" id="signUp"> Sign up </button>
+		<button onclick="signIn()","go()" id="signIn"> Sign in </button>
+		<button onclick="signOut()","go()" id="signup"> Sign out </button>
+
+	</div>
+
+	</body>
+
+</html>
+

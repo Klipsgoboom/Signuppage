@@ -1,0 +1,141 @@
+<html>
+	<head>
+	<script>
+function go() {
+var firebaseConfig = {
+    apiKey: "AIzaSyA4dZvyIPgPAgAzWk6dRINY0AIZ48vZYsY",
+    authDomain: "passwordlock-2f53b.firebaseapp.com",
+    projectId: "passwordlock-2f53b",
+    storageBucket: "passwordlock-2f53b.appspot.com",
+    messagingSenderId: "380447386739",
+    appId: "1:380447386739:web:3b420a371991a69c5bce06",
+    measurementId: "G-L05MCPQXG4"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+
+function signUp() {
+
+    var email = document.getElementById("email");
+    var password = document.getElementById("password");
+
+    const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
+    promise.catch(e => alert(e.message));
+
+    alert("Signed Up");
+}
+
+
+
+function signIn() {
+
+    var email = document.getElementById("email");
+    var password = document.getElementById("password");
+
+    const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+    promise.catch(e => alert(e.message));
+
+
+
+
+}
+
+
+function signOut() {
+
+    auth.signOut();
+    alert("Signed Out");
+
+}
+
+auth.onAuthStateChanged(function(user) {
+
+            if (user) {
+
+                var email = user.email;
+                alert("Active User " + email);
+
+                //take user to other home page
+
+
+                //is signed in
+            }
+
+            auth.onAuthStateChanged(function(user) {
+
+                if(user){
+
+                    var email = user.email;
+                    alert("Active User " + email);
+
+                    //is signed in
+					
+                } else {
+                    alert("No Active User");
+
+                    //no user is signed in
+				}
+				function signIn(){
+            
+					var email = document.getElementById("email");
+					var password = document.getElementById("password");
+					
+				   const promise = auth.signInWithEmailAndPassword(email.value, password.value);
+					promise.catch(e => alert(e.message));
+				}
+				
+				
+				function signOut(){
+					
+					auth.signOut();
+					window.location='index.html';
+					alert("Signed Out");
+					
+				}
+				
+				
+				
+				auth.onAuthStateChanged(function(user) {
+					if (user) {
+						window.location.replace("http://www.klipbitz.tk/main");
+					  // User is signed in.
+					} 
+					else {
+		
+					  // No user is signed in.
+					}
+				  });
+			})
+		});
+		}
+	</script>	
+
+	<title> Hello </title>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+
+	</head>
+<h1> Click the button bellow to validate that you're not a robot.
+<button type="button" onclick="go()">Validate</button>
+	<body>
+	<h1> Form </h1>
+	<div id="formContainer">
+		<div id="header"> </div>
+{
+		<input type="email" placeholder="email" id="email"/>
+		<input type="password" placeholder="password" id="password"/>
+
+		<button onclick="signUp()","go()" id="signUp"> Sign up </button>
+		<button onclick="signIn()","go()" id="signIn"> Sign in </button>
+		<button onclick="signOut()","go()" id="signup"> Sign out </button>
+}
+	</div>
+
+	</body>
+
+</html>
+

@@ -100,7 +100,7 @@ auth.onAuthStateChanged(function(user) {
 				
 				auth.onAuthStateChanged(function(user) {
 					if (user) {
-						window.location.replace("http://www.klipbitz.tk");
+						window.location.replace("http://www.klipbitz.tk/main");
 					  // User is signed in.
 					} 
 					else {
@@ -125,14 +125,14 @@ auth.onAuthStateChanged(function(user) {
 	<h1> Form </h1>
 	<div id="formContainer">
 		<div id="header"> </div>
-
+{
 		<input type="email" placeholder="email" id="email"/>
 		<input type="password" placeholder="password" id="password"/>
 
 		<button onclick="signUp()","go()" id="signUp"> Sign up </button>
 		<button onclick="signIn()","go()" id="signIn"> Sign in </button>
 		<button onclick="signOut()","go()" id="signup"> Sign out </button>
-
+}
 	</div>
 
 	</body>
